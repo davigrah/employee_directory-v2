@@ -6,7 +6,10 @@ email, location, phone, dob &noinfo &nat=US`
 const gallery = document.querySelector('.gallery');
 const overlay = document.querySelector('.overlay');
 const modalContainer = document.querySelector('.modal-info-container');
+const modal = document.querySelector('.modal')
 const modalClose = document.querySelector('.modal-close-btn');
+const modalPrev = document.querySelector('.modal-prev')
+const modalNext = document.querySelector('.modal-next')
 const employeeNumber = 12
 
 // fetch data from API
@@ -49,7 +52,7 @@ function displayModal (index) {
   const date = new Date(dob.date);
 
   const modalHTML = `
-      <img class="modal-img" src="${picture.large}" alt="profile picture">
+      <img class="modal-img" data-index='${index}' src="${picture.large}" alt="profile picture">
       <h3 id="name" class="modal-name cap">${name.first} ${name.last}</h3>
       <p class="modal-text">${email}</p>
       <p class="modal-text cap">${city}</p>
@@ -67,7 +70,7 @@ modalClose.addEventListener('click', () => {
   overlay.classList.add('hidden');
 });
 
-const index = ''
+
 gallery.addEventListener('click', e => {
   // make sure the click is not on the gridContainer itself
   // select the card element based on its proximity to actual element clicked
@@ -77,21 +80,19 @@ gallery.addEventListener('click', e => {
   displayModal(index);
 })
 
-// // PREVIOUS AND NEXT BUTTONS FOR MODAL
-// document.addEventListener('click', (e) => {
-//   if (e.target && e.target.id === 'modal-next') {
-//     document.querySelector('.modal').style.classList = 'hidden';
-//     if (employeeNumber <= 10) {
-//       displayModal(employeeNumber + 1);
-//     } else {
-//       displayModal(0);
-//     }
-//   } else if (e.target && e.target.id === 'modal-prev') {
-//     document.querySelector('.modal').style.classList = 'hidden';
-//     if (employeeNumber === 0) {
-//       displayModal(11);
-//     } else {
-//       displayModal(employeeNumber - 1);
-//     }
-//   }
-// });
+
+modalPrev.addEventListener('click', e => {
+    const img = document.querySelector('.modal-img').getAttribute('data-index')
+    const index = parseInt(img) - 1
+    console.log(index)
+    // modal.style.visibility = 'hidden'
+    displayModal(index)
+   
+})
+
+modalNext.addEventListener('click', e => {
+    const img = document.querySelector('.modal-img').getAttribute('data-index')
+    const index = parseInt(img) + 1
+    console.log(index)
+    displayModal(index)
+})
