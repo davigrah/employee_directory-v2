@@ -70,7 +70,6 @@ modalClose.addEventListener('click', () => {
   overlay.classList.add('hidden');
 });
 
-
 gallery.addEventListener('click', e => {
   // make sure the click is not on the gridContainer itself
   // select the card element based on its proximity to actual element clicked
@@ -80,19 +79,20 @@ gallery.addEventListener('click', e => {
   displayModal(index);
 })
 
-
 modalPrev.addEventListener('click', e => {
-    const img = document.querySelector('.modal-img').getAttribute('data-index')
-    const index = parseInt(img) - 1
-    console.log(index)
-    // modal.style.visibility = 'hidden'
-    displayModal(index)
-   
+  // store the index value of the card passed to the img
+  // transform a string into a number - 1
+  // display previous modal based on the index number
+  const img = document.querySelector('.modal-img').getAttribute('data-index')
+  const index = parseInt(img) - 1
+  displayModal(index)
 })
 
 modalNext.addEventListener('click', e => {
-    const img = document.querySelector('.modal-img').getAttribute('data-index')
-    const index = parseInt(img) + 1
-    console.log(index)
-    displayModal(index)
+  // store the index value of the card passed to the img
+  // transform a string into a number - 1
+  // display previous modal based on the index number
+  const img = document.querySelector('.modal-img').getAttribute('data-index')
+  const index = parseInt(img) + 1
+  displayModal(index)
 })
