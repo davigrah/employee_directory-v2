@@ -96,3 +96,23 @@ modalNext.addEventListener('click', e => {
   const index = parseInt(img) + 1
   displayModal(index)
 })
+
+//  Search Functionality //
+
+// 1. Select the search bar element and create an empty array to insert the data of the filtered employees.
+const searchInput = document.getElementById('search-input')
+let newEmployeeList = []
+
+//    a. Event listener to filter out employee's based on the key characters provided to the search bar.
+searchInput.addEventListener('keyup', (e) => {
+  const filterInput = e.target.value.toLowerCase()
+
+   //    b. If individual employee's data includes stored search input, add that employee to new list of employee's
+   const filteredStudent = employees.filter(employee => {
+    return employee.name.first.toLowerCase().includes(filterInput) || employee.name.last.toLowerCase().includes(filterInput)
+  })
+
+  // 3. After loop ends, call displayEmployees function with new list of employee's as first argument
+  newEmployeeList = filteredStudent
+  displayEmployees(newEmployeeList)
+})
