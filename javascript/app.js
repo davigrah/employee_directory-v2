@@ -16,15 +16,17 @@ const employeeNumber = 12
 fetch(urlAPI)
   .then(res => res.json())
   .then(res => res.results)
-  .then(displayEmployees)
+  .then(data => {
+    employees = data
+    displayEmployees(data)
+   })
   .catch(err => console.log(err));
-
 function displayEmployees (employeeData) {
-  employees = employeeData;
+
   // store the employee HTML as we create it
   let employeeHTML = '';
   // loop through each employee and create HTML markup
-  employees.forEach((employee, index) => {
+  employeeData.forEach((employee, index) => {
     const name = employee.name;
     const email = employee.email;
     const city = employee.location.city;
