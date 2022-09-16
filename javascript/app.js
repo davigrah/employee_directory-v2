@@ -1,7 +1,7 @@
 /* eslint-disable semi */
 // global variables
 let employees = [];
-const urlAPI = `https://randomuser.me/api/?results=12&inc=name, picture,
+const urlAPI = `https://randomuser.me/api/?results=50&inc=name, picture,
 email, location, phone, dob &noinfo &nat=US`
 const gallery = document.querySelector('.gallery');
 const overlay = document.querySelector('.overlay');
@@ -10,7 +10,6 @@ const modal = document.querySelector('.modal')
 const modalClose = document.querySelector('.modal-close-btn');
 const modalPrev = document.querySelector('.modal-prev')
 const modalNext = document.querySelector('.modal-next')
-const employeeNumber = 12
 
 // fetch data from API
 fetch(urlAPI)
@@ -18,23 +17,33 @@ fetch(urlAPI)
   .then(res => res.results)
   .then(data => {
     employees = data
-    displayEmployees(data)
-   })
+    addPagination(data)
+    displayEmployees(data, 1)
+  })
   .catch(err => console.log(err));
-function displayEmployees (employeeData) {
+ 
+  
+function displayEmployees (employeeData, page) {
+  // Two variables which will display start and end index of student data
+  const startIndex = (page * 12) - 12
+  const endIndex = page * 12
 
+  // gallery list is set to an empty string so remove string
+  const gallery = document.querySelector('.gallery')
+  gallery.innerHTML = ''
   // store the employee HTML as we create it
   let employeeHTML = '';
   // loop through each employee and create HTML markup
-  employeeData.forEach((employee, index) => {
-    const name = employee.name;
-    const email = employee.email;
-    const city = employee.location.city;
-    const picture = employee.picture;
-    const state = employee.location.state
-    // template literals make this so much cleaner!
-    employeeHTML += `
-    <div class="card" data-index="${index}">
+  for (let i = 0; i < employeeData.length; i++) {
+    if (i >= startIndex && i < endIndex) {
+      const name = employees[i].name;
+      const email = employees[i].email;
+      const city = employees[i].location.city;
+      const picture = employees[i].picture;
+      const state = employees[i].location.state
+      // template literals make this so much cleaner!
+      employeeHTML += `
+    <div class="card" data-index="${i}">
     <div class="card-img-container">
             <img class="card-img" src="${picture.large}" alt="profile picture">
         </div>
@@ -45,7 +54,8 @@ function displayEmployees (employeeData) {
         </div>
     </div>
     `
-  });
+    }
+  }
   gallery.innerHTML = employeeHTML;
 }
 function displayModal (index) {
@@ -109,12 +119,48 @@ let newEmployeeList = []
 searchInput.addEventListener('keyup', (e) => {
   const filterInput = e.target.value.toLowerCase()
 
-   //    b. If individual employee's data includes stored search input, add that employee to new list of employee's
-   const filteredStudent = employees.filter(employee => {
+  //    b. If individual employee's data includes stored search input, add that employee to new list of employee's
+  const filteredStudent = employees.filter(employee => {
     return employee.name.first.toLowerCase().includes(filterInput) || employee.name.last.toLowerCase().includes(filterInput)
   })
 
   // 3. After loop ends, call displayEmployees function with new list of employee's as first argument
   newEmployeeList = filteredStudent
-  displayEmployees(newEmployeeList)
+  displayEmployees(newEmployeeList, 1)
 })
+
+// Add Pagination //
+
+function addPagination(list) {
+  // variable show the number of the pagination button needed
+  const numOfPages = Math.ceil(list.length / 12)
+
+  // the list is set to am empty string to remove data if present
+  let buttonHTML = ''
+
+  for (let i = 1; i <= numOfPages; i++) {
+    buttonHTML += `
+     <li>
+       <button type="button">${i}</button>
+     </li>    
+     `
+    // console.log(buttonHTML);
+  }
+  const pagination = document.querySelector('.pagination')
+  pagination.insertAdjacentHTML('beforeend', buttonHTML)
+
+  const button = document.querySelectorAll("button[type='button']")
+  button[0].className = 'active'
+  // console.log(button);
+
+  pagination.addEventListener('click', (e) => {
+    const buttonClicked = e.target
+    if (buttonClicked.tagName === 'BUTTON') {
+      const activeClassButton = document.getElementsByClassName('active')
+      activeClassButton[0].className = ''
+      buttonClicked.className = 'active'
+      displayEmployees(list, buttonClicked.textContent)
+    }
+  })
+}
+
