@@ -16,7 +16,7 @@ html, body {
 body {
     font-family: "Nunito", sans-serif;
     text-align: center;
-    background: rgba(235, 235, 235, 0.9);
+    background: #283618;
 }
 
 header {
@@ -36,28 +36,30 @@ header h1 {
 
 .search-input {
     padding: 0.4rem 1rem;
-    border: 1px solid rgba(200, 200, 200, 0.9);
+    border: 1px solid #FEFAE0;
     border-radius: 0.25rem 0 0 0.25rem ;
     max-width: 20rem;
     transition: .4s ease-out;
+    background-color: #FEFAE0;
 }
 
 .search-input:active, .search-input:hover, .search-input:focus {
-    border: 1px solid rgba(50, 50, 50, 0.9);
+    border: 1px solid #BC6C25;
 }
+
 
 .search-submit {
     cursor: pointer;
     height: 33px;
-    background: rgba(245, 245, 245, 0.9);
+    background: #FEFAE0;
     border-radius: 0 0.25rem 0.25rem 0;
-    border: 1px solid rgba(200, 200, 200, 0.9);
+    border: 1px solid #BC6C25);
     transition: .4s ease-out;
 }
 
 .search-submit:active, .search-submit:hover, .search-submit:focus {
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(50, 50, 50, 0.9);
+    border: 1px solid #BC6C25;
 }
 
 
@@ -79,14 +81,16 @@ header h1 {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     width: 100%;
     max-width: 360px;
+    height: 200px;
     margin: 10px 10px 20px;
     padding: 10px;
-    background: rgba(245, 245, 245, 0.9);
-    border-radius: 0.25em;
+    background: #FEFAE0;
+    border-radius: 2em;
     border: 1px solid rgba(50, 50, 50, 0.3);
     transition: .4s ease-out;
     overflow: hidden;
@@ -112,9 +116,11 @@ header h1 {
 .card-text {
     font-size: 0.9em;
     color: rgba(50, 50, 50, 0.7);
-    margin: 7px auto;
-    transition: .4s ease-out;
+    margin: 7px auto; 
 }
+h3, .card-text {
+    transition: .4s ease-out;
+ }
 
 .cap {
     text-transform: capitalize;
@@ -141,18 +147,18 @@ header h1 {
     min-height: 415px;
     margin: 10px auto auto;
     padding-bottom: 15px;
-    background: rgba(255, 255, 255, 1);
-    border-radius: 0.25em;
+    background: #FEFAE0;
+    border-radius: 2em;
     border: 1px solid rgba(100, 100, 100, 0.3);
     transition: .4s ease-out;
 }
 
-.modal-close-btn {
+#modal-close-btn {
     position: absolute;
     top: 15px;
     right: 15px;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.9);
+    color: #FEFAE0;
     background: rgba(0, 0, 0, 0.8);
     border-radius: 0.25em;
     border: 1px solid rgba(50, 50, 50, 0.3);
@@ -188,8 +194,8 @@ header h1 {
     max-width: 420px;
     padding: 10px 15px 15px;;
     margin: 10px auto auto;
-    background: rgba(255, 255, 255, 1);
-    border-radius: 0.25em;
+    background: #FEFAE0;
+    border-radius: 1em;
     border: 1px solid rgba(100, 100, 100, 0.3);
 }
 
@@ -199,9 +205,10 @@ header h1 {
     cursor: pointer;
     font-size: 0.85em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.9);
+    color: #FEFAE0;
     padding: 0.75em 1.5em;
-    background: rgba(0, 0, 0, 0.8);
+    background: #BC6C25;
+    border: 0px;
     border-radius: 0.35em;
     transition: .4s ease-out;
   }
@@ -222,7 +229,7 @@ header h1 {
     cursor: pointer;
       outline: none;
       padding: 0.5em 0.85em;
-      background: #fff;
+      background: #FEFAE0;
     border: none;
     border-radius: 3px;
     text-decoration: none;
@@ -232,9 +239,10 @@ header h1 {
   }
   
   .pagination li button.active, .pagination li button:hover {
-    background-color: pink;
+    background-color: #BC6C25;
     color: #fff;
   }
+  
   
   
 
@@ -278,16 +286,16 @@ header h1 {
 @media (min-width: 1024px) {
 
     .card:hover {
-        background: rgba(255, 255, 255, 1);
+        background: #BC6C25;
         border: 1px solid rgba(50, 50, 50, 0.9);
     }
 
-    .card:hover .card-text {
-        color: rgba(25, 25, 25, 1); 
+    .card:hover .card-text, .card:hover h3 {
+        color: #FEFAE0; 
     }
 
     .btn:hover {
-        background: rgba(255, 255, 255, 1);
-        color: rgba(25, 25, 25, 1); 
+        background: #606C38;
+        color: #FEFAE0; 
     }
 }
