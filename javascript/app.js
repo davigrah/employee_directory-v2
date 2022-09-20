@@ -96,7 +96,11 @@ modalPrev.addEventListener('click', e => {
   // display previous modal based on the index number
   const img = document.querySelector('.modal-img').getAttribute('data-index')
   const index = parseInt(img) - 1
-  displayModal(index)
+  if (index > 0) { 
+    displayModal(index)
+  } else {
+    displayModal(employees.length - 1);
+  }
 })
 
 modalNext.addEventListener('click', e => {
@@ -105,7 +109,11 @@ modalNext.addEventListener('click', e => {
   // display previous modal based on the index number
   const img = document.querySelector('.modal-img').getAttribute('data-index')
   const index = parseInt(img) + 1
-  displayModal(index)
+  if (index < employees.length - 1) {
+    displayModal(index)
+  } else {
+    displayModal(0);
+  }
 })
 
 // Add Pagination //
