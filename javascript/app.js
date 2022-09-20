@@ -35,11 +35,11 @@ function displayEmployees (employeeData, page) {
   // loop through each employee and create HTML markup
   for (let i = 0; i < employeeData.length; i++) {
     if (i >= startIndex && i < endIndex) {
-      const name = employees[i].name;
-      const email = employees[i].email;
-      const city = employees[i].location.city;
-      const picture = employees[i].picture;
-      const state = employees[i].location.state
+      const name = employeeData[i].name;
+      const email = employeeData[i].email;
+      const city = employeeData[i].location.city;
+      const picture = employeeData[i].picture;
+      const state = employeeData[i].location.state
       // template literals make this so much cleaner!
       employeeHTML += `
     <div class="card" data-index="${i}">
